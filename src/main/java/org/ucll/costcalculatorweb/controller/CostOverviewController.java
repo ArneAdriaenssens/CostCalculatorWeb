@@ -29,7 +29,7 @@ public class CostOverviewController {
     @Autowired
     private CostCalculator costCalculator;
     
-    @RequestMapping(value="/getForm",method=RequestMethod.GET)
+    @RequestMapping(method=RequestMethod.GET)
     public ModelAndView getCosts(HttpServletRequest req){
         User owner = (User)req.getSession().getAttribute("owner");
         if(owner==null) return new ModelAndView("index");

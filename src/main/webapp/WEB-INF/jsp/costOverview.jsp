@@ -26,4 +26,34 @@
             </header>
             <main>
                 <c:if test="${not empty error}">
-                    <div 
+                    <div class="alert-danger">
+                        <ul>
+                            <c:forEach var="errors" items="${error}">
+                                <li><c:out value="${errors}"/></li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </c:if>
+            <table>
+                <thead>
+                <th>Price</th>
+                <th>Location</th>
+                <th>Description</th>
+                </thead>
+                <tbody>
+                <c:forEach var="cost" items="${costs}">
+                    <tr>
+                        <td>${cost.price}</td><td>${cost.location}</td><td>${cost.description}</td>
+                    </tr> 
+                </c:forEach>
+                </tbody>
+            </table>
+                <form action="<c:url value="/cost/new.htm"/>" method="GET">
+                    <input type="submit" value="New" id="new">
+                </form> 
+                <br>
+                <a href="<c:url value="/user/logout.htm"/>" id="logout">logout</a>
+            </main>
+        </div>
+    </body>
+</html>

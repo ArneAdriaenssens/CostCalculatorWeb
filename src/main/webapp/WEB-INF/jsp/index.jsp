@@ -17,7 +17,7 @@
                 <nav>
                     <ul>
                         <li id="actual"><a href="<c:url value="/index.htm"/>" >Home</a></li>
-                        <li><a href="<c:url value="/cost/getForm.htm"/>">Cost Overview</a></li>
+                        <li><a href="<c:url value="/cost.htm"/>">Cost Overview</a></li>
                     </ul>
                 </nav>
                 <h2>
