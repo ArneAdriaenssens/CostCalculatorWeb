@@ -25,7 +25,12 @@ public class CostOverviewController {
     
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView getCosts(){
-        return new ModelAndView("costoverview", "costs", costCalculator.getAllCosts());
+        return new ModelAndView("costOverview", "costs", costCalculator.getAllCosts());
+    }
+    
+    @RequestMapping(value="/new")
+    public ModelAndView getAddForm(){
+        return new ModelAndView("costForm");
     }
     
 }
