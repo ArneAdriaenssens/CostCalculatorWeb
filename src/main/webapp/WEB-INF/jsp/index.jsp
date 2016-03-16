@@ -6,14 +6,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home - CostCalculator</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css"/>">
     </head>
 
     <body>
         <div id="container">
             <header>
                 <h1><span>Cost Calculator</span></h1>
-                <img src="images/CostBanner.jpg"></img>
+                <img src="<c:url value="/images/CostBanner.jpg"/>"></img>
                 <nav>
                     <ul>
                         <li id="actual"><a href="<c:url value="/index.htm"/>" >Home</a></li>
@@ -36,13 +36,13 @@
                     </div>
                 </c:if>
                 <c:choose>
-                    <c:when test="${user!=null}">
+                    <c:when test="${owner!=null}">
                         <h3>
-                            Hello ${user.firstName}
+                            Hello ${owner.firstName}
                         </h3>
                     </c:when>
                     <c:otherwise>
-                        <form method="POST" action="">
+                        <form method="POST" action="<c:url value="/user/login.htm"/>">
                             <p>
                                 <label for="email">Email</label><input type="email" name="email"><br>
                                 <label for="password">Password</label><input type="password" name="password"><br>
@@ -52,7 +52,7 @@
                     </c:otherwise>
                 </c:choose>
                 <br>
-                <a href="" id="logout">logout</a>
+                <a href="<c:url value="/user/logout.htm"/>" id="logout">logout</a>
             </main>
         </div>
     </body>

@@ -5,12 +5,18 @@
  */
 package org.ucll.costcalculatorweb.controller;
 
+import cost.domain.Cost;
 import facade.CostCalculator;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import user.domain.User;
 
 /**
  *
@@ -24,13 +30,22 @@ public class CostOverviewController {
     private CostCalculator costCalculator;
     
     @RequestMapping(method=RequestMethod.GET)
-    public ModelAndView getCosts(){
-        return new ModelAndView("costOverview", "costs", costCalculator.getAllCosts());
+    public ModelAndView getCosts(HttpServletRequest req){
+        User owner = (User) req.getSession().getAttribute("owner");
+        if(owner==null) return new ModelAndView("index");
+        List<Cost> costs = owner.getCosts();
+        return new ModelAndView("costOverview", "costs", costs);
     }
     
-    @RequestMapping(value="/new")
+    @RequestMapping(value="/new", method=RequestMethod.GET)
     public ModelAndView getAddForm(){
-        return new ModelAndView("costForm");
+        return new ModelAndView("costForm", "cost", new Cost() );
+    }
+    
+    @RequestMapping(value="/save", method = RequestMethod.POST)
+    public String saveCost(@ModelAttribute("cost") Cost cost){
+        costCalculator.addCost(cost);
+        return "redirect:/cost.htm";
     }
     
 }

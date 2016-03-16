@@ -118,6 +118,7 @@ input,textarea {
     margin: 2px 0 16px 0;
     outline: 0 none;
     padding: 0.5em;
+    height: 25px;
     line-height:15px;
     border-radius: 3px;
     box-shadow: inset 0px 1px 4px #ECECEC;
@@ -129,6 +130,15 @@ input,textarea {
     box-shadow: inset 0px 1px 4px #d59392;
 }
 
+input[type=submit]{
+    text-align: center;
+    margin: 10px 0 0 0;
+    width: 200px;
+}
+
+input[type=submit]#new{
+    width: 80px;
+}
 
 /* mobile first */
 div#container {
@@ -146,10 +156,23 @@ nav ul li:first-child {
 
 label,input,textarea {
     display: block;
+    width: 60%;
 }
-input[type="text"], input[type="email"], textarea {
-    width: 100%;
+
+input[type=number]{
+    height: 30px;
 }
+
+form p{
+   text-align: center;
+}
+
+form p label{
+    text-align: left;
+}
+
+
+
 input {
     height: 25px;
 }
@@ -205,9 +228,6 @@ input {
         width: 80%;
         margin-left: auto;
         margin-right: auto;
-    }
-    input[type="submit"] {
-        margin-left: 112px;
     }
     textarea {
         vertical-align: middle;    
