@@ -35,40 +35,29 @@
                         </ul>
                     </div>
                 </c:if>
-                <c:choose>
-                    <c:when test="${user!=null}">
-                        <h3>
-                            Hello ${user.firstName}
-                        </h3>
-                    </c:when>
-                    <c:otherwise>
-                        <form method="POST" action="">
-                            <p>
-                                <label for="price">Price:</label><input type="number" name="price">
-                            </p>
-                            <p>
-                                <label for="location">Location:</label><input type="text" name="location">
-                            </p>
-                            <p>
-                                <label for="description">Description:</label><input type="text" name="description">
-                            </p>
-                            <p>
-                                <label for="category">Category:</label>
-                                <select name="category" form="categoryform">
-                                    <option value="FOOD">Food</option>
-                                    <option value="DRINKS">Drinks</option>
-                                    <option value="FREETIME">Freetime</option>
-                                </select>
-                            </p>
-                            <p>
-                                <input type="hidden" name="owner" value="${owner}"> 
-                            </p>
-                            <p>
-                                <input type="submit" value="Add cost">
-                            </p>
-                        </form> 
-                    </c:otherwise>
-                </c:choose>
+
+                <form method="POST" action="<c:url value="/cost/save.htm"/>">
+                    <p>
+                        <label for="price">Price:</label><input type="number" id="price" name="price">
+                    </p>
+                    <p>
+                        <label for="location">Location:</label><input type="text" id="location" name="location">
+                    </p>
+                    <p>
+                        <label for="description">Description:</label><input type="text" id="description" name="description">
+                    </p>
+                    <p
+                        <label for="category">Category:</label>
+                        <select name="category" id="category">
+                            <option value="FOOD">Food</option>
+                            <option value="DRINKS">Drinks</option>
+                            <option value="FREETIME">Freetime</option>
+                        </select>
+                    </p>
+                    <p>
+                        <input type="submit" value="Add cost">
+                    </p>
+                </form> 
             </main>
         </div>
     </body>

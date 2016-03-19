@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.ucll.costcalculatorweb.controller;
+package org.ucll.costcalculatoruser.controller;
 
 import facade.CostCalculator;
 import javax.servlet.http.HttpServletRequest;

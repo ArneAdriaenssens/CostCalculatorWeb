@@ -5,12 +5,12 @@
  */
 package org.ucll.costcalculatorweb.controller;
 
+import cost.domain.Category;
 import cost.domain.Cost;
 import facade.CostCalculator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,12 +38,13 @@ public class CostOverviewController {
     }
     
     @RequestMapping(value="/new", method=RequestMethod.GET)
-    public ModelAndView getAddForm(){
-        return new ModelAndView("costForm", "cost", new Cost() );
+    public ModelAndView getCostForm(HttpServletRequest req){
+        return new ModelAndView("costForm", "newCost", new Cost() );
     }
     
-    @RequestMapping(value="/save", method = RequestMethod.POST)
-    public String saveCost(@ModelAttribute("cost") Cost cost){
+    @RequestMapping(method = RequestMethod.POST, value="/save")
+    public String saveCost(@ModelAttribute("newCost") Cost cost, HttpServletRequest req){
+        cost.setOwner((User)req.getSession().getAttribute("owner"));
         costCalculator.addCost(cost);
         return "redirect:/cost.htm";
     }

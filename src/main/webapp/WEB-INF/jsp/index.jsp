@@ -52,6 +52,8 @@
                     </c:otherwise>
                 </c:choose>
                 <br>
+                <a href="<c:url value="/user/register.htm"/>" id="register">Register</a>
+                <br>
                 <a href="<c:url value="/user/logout.htm"/>" id="logout">logout</a>
             </main>
         </div>
