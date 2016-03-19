@@ -15,6 +15,7 @@
 
     <mvc:annotation-driven/>
     <context:component-scan base-package="org.ucll.costcalculatorweb.controller"/>    
+    <context:component-scan base-package="org.ucll.costcalculatoruser.controller"/>    
     
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">

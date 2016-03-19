@@ -5,7 +5,6 @@
  */
 package org.ucll.costcalculatorweb.controller;
 
-import cost.domain.Category;
 import cost.domain.Cost;
 import facade.CostCalculator;
 import java.util.List;

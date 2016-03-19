@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import user.domain.User;
 
 /**
@@ -41,6 +43,17 @@ public class UserController {
     public String logout(HttpServletRequest req){
         req.getSession().removeAttribute("owner");
         return "index";
+    }
+    
+    @RequestMapping(method = RequestMethod.GET, value="/register")
+    public ModelAndView getRegisterForm(HttpServletRequest req){
+        return new ModelAndView("registerForm", "newUser", new User() );
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, value="/save")
+    public String register(@ModelAttribute("newUser") User user){
+        costCalculator.addUser(user);
+        return "redirect:/index.htm";
     }
     
 }
