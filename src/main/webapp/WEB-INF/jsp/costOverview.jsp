@@ -25,15 +25,6 @@
                 </h2>
             </header>
             <main>
-                <c:if test="${not empty error}">
-                    <div class="alert-danger">
-                        <ul>
-                            <c:forEach var="errors" items="${error}">
-                                <li><c:out value="${errors}"/></li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-                </c:if>
             <table>
                 <thead>
                 <th>Price</th>
@@ -43,7 +34,7 @@
                 <tbody>
                 <c:forEach var="cost" items="${costs}">
                     <tr>
-                        <td>${cost.price}</td><td>${cost.location}</td><td>${cost.description}</td>
+                        <td>${cost.price}</td><td>${cost.location}</td><td>${cost.description}</td><td><a href="<c:url value="/cost/${cost.id}.htm"/>">Edit</a></td>
                     </tr> 
                 </c:forEach>
                 </tbody>

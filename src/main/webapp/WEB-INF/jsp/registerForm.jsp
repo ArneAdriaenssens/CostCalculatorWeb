@@ -21,7 +21,7 @@
                     </ul>
                 </nav>
                 <h2>
-                    Cost Form
+                    Register Form
                 </h2>
 
             </header>
