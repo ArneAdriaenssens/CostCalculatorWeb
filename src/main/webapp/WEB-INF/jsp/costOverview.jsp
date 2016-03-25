@@ -16,7 +16,7 @@
                 <img src="<c:url value="/images/CostBanner.jpg"/>"></img>
                 <nav>
                     <ul>
-                        <li><a href="<c:url value="/index.htm"/>" >Home</a></li>
+                        <li><a href="<c:url value="/user.htm"/>" >Home</a></li>
                         <li id="actual"><a href="<c:url value="/cost.htm"/>">Cost Overview</a></li>
                     </ul>
                 </nav>

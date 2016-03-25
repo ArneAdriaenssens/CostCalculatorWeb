@@ -1,22 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package org.ucll.costcalculatorweb.controller;
+package org.ucll.costcalculatorcost.controller;
 
+import cost.domain.Category;
 import cost.domain.Cost;
 import facade.CostCalculator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import user.domain.User;
+import owner.domain.Owner;
 
 /**
  *
@@ -24,34 +21,45 @@ import user.domain.User;
  */
 @Controller
 @RequestMapping(value="/cost")
-public class CostOverviewController {
+public class CostController {
     
     @Autowired
     private CostCalculator costCalculator;
+    
+    @Autowired
+    private CostValidator validator;
+    
     private boolean edit;
     
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView getCosts(HttpServletRequest req){
-        User owner = (User)req.getSession().getAttribute("owner");
-        if(owner==null) return new ModelAndView("index");
+        Owner owner = (Owner)req.getSession().getAttribute("owner");
+        if(owner==null) return new ModelAndView("index", "user", new Owner());
         List<Cost> costs = owner.getCosts();
         return new ModelAndView("costOverview", "costs", costs);
     }
     
     @RequestMapping(value="/new", method=RequestMethod.GET)
     public ModelAndView getCostForm(HttpServletRequest req){
-        User owner = (User)req.getSession().getAttribute("owner");
-        if(owner==null) return new ModelAndView("index");
+        Owner owner = (Owner)req.getSession().getAttribute("owner");
+        if(owner==null) return new ModelAndView("index", "user", new Owner());
         this.edit=false;
-        return new ModelAndView("costForm", "newCost", new Cost() );
+        ModelAndView model = new ModelAndView("costForm");
+        model.addObject("cost", new Cost());
+        model.addObject("categories", Category.values());
+        return model;
     }
     
     @RequestMapping(method = RequestMethod.POST, value="/save")
-    public String saveCost(@ModelAttribute("newCost") Cost cost, HttpServletRequest req){
-        cost.setOwner((User)req.getSession().getAttribute("owner"));
+    public String saveCost(@ModelAttribute("cost") Cost cost, BindingResult result, HttpServletRequest req){
+        validator.validate(cost, result);
+        if(result.hasErrors()){
+            req.setAttribute("categories", Category.values());
+            return "costForm";
+        }
         if(!edit){
             costCalculator.addCost(cost);
-        }
+        } 
         else{
             costCalculator.updateCost(cost);
         }
@@ -61,10 +69,13 @@ public class CostOverviewController {
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET )
     public ModelAndView getEditForm(@PathVariable long id, HttpServletRequest req){
-        User owner = (User)req.getSession().getAttribute("owner");
-        if(owner==null) return new ModelAndView("index");
+        Owner owner = (Owner)req.getSession().getAttribute("owner");
+        if(owner==null) return new ModelAndView("index", "user", new Owner());
         this.edit=true;
-        return new ModelAndView("costForm", "newCost", costCalculator.getCostById(id));
+        ModelAndView model = new ModelAndView("costForm");
+        model.addObject("cost", costCalculator.getCostById(id));
+        model.addObject("categories", Category.values());
+        return model;
     }
     
 }

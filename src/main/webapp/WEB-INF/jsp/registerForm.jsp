@@ -1,6 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
     <head>
@@ -16,7 +15,7 @@
                 <img src="<c:url value="/images/CostBanner.jpg"/>"></img>
                 <nav>
                     <ul>
-                        <li><a href="<c:url value="/index.htm"/>" >Home</a></li>
+                        <li><a href="<c:url value="/user.htm"/>" >Home</a></li>
                         <li><a href="<c:url value="/cost.htm"/>">Cost Overview</a></li>
                     </ul>
                 </nav>
@@ -26,33 +25,35 @@
 
             </header>
             <main>
-                <c:if test="${not empty error}">
-                    <div class="alert-danger">
-                        <ul>
-                            <c:forEach var="errors" items="${error}">
-                                <li><c:out value="${errors}"/></li>
-                                </c:forEach>
-                        </ul>
-                    </div>
-                </c:if>
-
-                <form method="POST" action="<c:url value="/user/save.htm"/>">
+                <form:form id="userForm" commandName="newUser" method="post" action="/CostCalculatorWeb/user/save.htm" >
                     <p>
-                        <label for="firstName">First name:</label><input type="text" id="firstName" name="firstName">
+                        <form:errors path="firstName" id="errors"/>
                     </p>
                     <p>
-                        <label for="lastName">Last name:</label><input type="text" id="lastName" name="lastName">
+                        <label for="firstName">First name:</label><form:input type="text" path="firstName" id="firstName" name="firstName"/>
                     </p>
                     <p>
-                        <label for="email">Email:</label><input type="email" id="email" name="email">
+                        <form:errors path="lastName" id="errors"/>
                     </p>
                     <p>
-                        <label for="password">Password:</label><input type="password" id="password" name="password">
+                        <label for="lastName">Last name:</label><form:input type="text" id="lastName" path="lastName" name="lastName"/>
+                    </p>
+                    <p>
+                        <form:errors path="email" id="errors"/>
+                    </p>
+                    <p>
+                        <label for="email">Email:</label><form:input type="email" id="email" path="email" name="email"/>
+                    </p>
+                    <p>
+                        <form:errors path="password" id="errors"/>
+                    </p>
+                    <p>
+                        <label for="password">Password:</label><form:input type="password" id="password" path="password" name="password"/>
                     </p>
                     <p>
                         <input type="submit" value="Register">
                     </p>
-                </form> 
+                </form:form> 
             </main>
         </div>
     </body>

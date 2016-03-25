@@ -228,7 +228,10 @@ input {
     textarea {
         vertical-align: middle;    
     }
-
+    
+    #errors{
+        color: red;
+    }
 
 }
 

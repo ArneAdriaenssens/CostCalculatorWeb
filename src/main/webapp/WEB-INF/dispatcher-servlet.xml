@@ -13,9 +13,9 @@
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-    <mvc:annotation-driven/>
-    <context:component-scan base-package="org.ucll.costcalculatorweb.controller"/>    
-    <context:component-scan base-package="org.ucll.costcalculatoruser.controller"/>    
+    <mvc:annotation-driven conversion-service="conversionService"/>
+    <context:component-scan base-package="org.ucll.costcalculatorcost.controller"/>    
+    <context:component-scan base-package="org.ucll.costcalculatoruser.controller"/> 
     
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
@@ -24,6 +24,7 @@
             </props>
         </property>
     </bean>
+    
 
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
