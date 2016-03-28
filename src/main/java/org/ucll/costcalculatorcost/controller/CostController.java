@@ -26,9 +26,6 @@ public class CostController {
     @Autowired
     private CostCalculator costCalculator;
     
-    @Autowired
-    private CostValidator validator;
-    
     private boolean edit;
         
     @RequestMapping(method=RequestMethod.GET)
@@ -52,7 +49,6 @@ public class CostController {
     
     @RequestMapping(method = RequestMethod.POST, value="/save")
     public String saveCost(@ModelAttribute("cost") Cost cost, BindingResult result, HttpServletRequest req){
-        validator.validate(cost, result);
         if(result.hasErrors()){
             req.setAttribute("categories", Category.values());
             return "costForm";

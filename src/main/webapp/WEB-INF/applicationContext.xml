@@ -10,9 +10,6 @@
 
     <bean id="costFacade" class ="facade.CostCalculatorFacade"/>
     
-    <bean id="costValidator" class="org.ucll.costcalculatorcost.controller.CostValidator" />
-    <bean id="userValidator" class="org.ucll.costcalculatoruser.controller.UserValidator" />
-    
     <bean id="conversionService"
           class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">

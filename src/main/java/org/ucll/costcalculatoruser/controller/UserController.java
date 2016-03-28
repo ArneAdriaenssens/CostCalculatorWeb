@@ -26,9 +26,6 @@ import owner.domain.Owner;
 public class UserController {
     
     @Autowired
-    private UserValidator validator;
-    
-    @Autowired
     private CostCalculator costCalculator;
     
     @RequestMapping(method=RequestMethod.GET)
@@ -38,7 +35,6 @@ public class UserController {
     
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public String login(@ModelAttribute("user") Owner user,BindingResult result, HttpServletRequest req){
-        validator.validate(user, result);
         String email = req.getParameter("email");
         String pass = req.getParameter("password");
         Owner owner = costCalculator.getUserByEmail(email);
@@ -49,6 +45,11 @@ public class UserController {
         return "index";
     }
     
+    @RequestMapping(method=RequestMethod.GET, value="/login")
+    public ModelAndView returnIndex(){
+        return new ModelAndView("index", "user", new Owner());
+    }
+    
     @RequestMapping(method = RequestMethod.GET, value="/logout")
     public String logout(HttpServletRequest req){
         req.getSession().removeAttribute("owner");
@@ -57,12 +58,11 @@ public class UserController {
     
     @RequestMapping(method = RequestMethod.GET, value="/register")
     public ModelAndView getRegisterForm(HttpServletRequest req){
-        return new ModelAndView("registerForm", "newUser", new Owner() );
+        return new ModelAndView("registerForm", "user", new Owner() );
     }
     
     @RequestMapping(method = RequestMethod.POST, value="/save")
-    public String register(@ModelAttribute("newUser") Owner owner, BindingResult result){
-        validator.validate(owner, result);
+    public String register(@ModelAttribute("user") Owner owner, BindingResult result){
         if(result.hasErrors()){
             return "registerForm";
         }
