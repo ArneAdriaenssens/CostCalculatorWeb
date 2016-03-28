@@ -22,52 +22,56 @@ import owner.domain.Owner;
  * @author Arne
  */
 @Controller
-@RequestMapping(value="/user")
+@RequestMapping(value = "/user")
 public class UserController {
-    
+
     @Autowired
     private CostCalculator costCalculator;
-    
-    @RequestMapping(method=RequestMethod.GET)
-    public ModelAndView getIndex(){
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView getIndex() {
         return new ModelAndView("index", "user", new Owner());
     }
-    
-    @RequestMapping(value="/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute("user") Owner user,BindingResult result, HttpServletRequest req){
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(@ModelAttribute("user") Owner user, BindingResult result, HttpServletRequest req) {
         String email = req.getParameter("email");
         String pass = req.getParameter("password");
         Owner owner = costCalculator.getUserByEmail(email);
-        if(owner==null)return "index";
-        if(!owner.isSamePassword(pass)) return "index";
+        if (owner == null) {
+            req.setAttribute("error", "User does not exist");
+            return "index";
+        }
+        if (!owner.isSamePassword(pass)) {
+            return "index";
+        }
         HttpSession session = req.getSession();
         session.setAttribute("owner", owner);
         return "index";
     }
-    
-    @RequestMapping(method=RequestMethod.GET, value="/login")
-    public ModelAndView returnIndex(){
+
+    @RequestMapping(method = RequestMethod.GET, value = "/login")
+    public ModelAndView returnIndex() {
         return new ModelAndView("index", "user", new Owner());
     }
-    
-    @RequestMapping(method = RequestMethod.GET, value="/logout")
-    public String logout(HttpServletRequest req){
+
+    @RequestMapping(method = RequestMethod.GET, value = "/logout")
+    public String logout(HttpServletRequest req) {
         req.getSession().removeAttribute("owner");
         return "redirect:/user.htm";
     }
-    
-    @RequestMapping(method = RequestMethod.GET, value="/register")
-    public ModelAndView getRegisterForm(HttpServletRequest req){
-        return new ModelAndView("registerForm", "user", new Owner() );
+
+    @RequestMapping(method = RequestMethod.GET, value = "/register")
+    public ModelAndView getRegisterForm(HttpServletRequest req) {
+        return new ModelAndView("registerForm", "user", new Owner());
     }
-    
-    @RequestMapping(method = RequestMethod.POST, value="/save")
-    public String register(@ModelAttribute("user") Owner owner, BindingResult result){
-        if(result.hasErrors()){
+
+    @RequestMapping(method = RequestMethod.POST, value = "/save")
+    public String register(@ModelAttribute("user") Owner owner, BindingResult result) {
+        if (result.hasErrors()) {
             return "registerForm";
         }
         costCalculator.addUser(owner);
         return "redirect:/user.htm";
     }
-    
 }

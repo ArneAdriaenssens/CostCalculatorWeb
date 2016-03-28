@@ -20,7 +20,7 @@ public class OwnerConverter implements Converter<String, Owner>{
     @Override
     public Owner convert(String email) {
         Owner owner = null;
-        try{
+        try{ 
             owner = costCalculator.getUserByEmail(email);
         } catch(Exception e){
             System.out.println(e);

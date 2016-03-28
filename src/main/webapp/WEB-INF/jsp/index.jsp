@@ -36,6 +36,7 @@
                         </h3>
                     </c:when>
                     <c:otherwise>
+                        <p id="errors">${error}</p>
                         <form:form method="post" commandName="user" action="/CostCalculatorWeb/user/login.htm">
                             <p>
                                 <form:errors path="email" id="errors"/>

@@ -3,7 +3,9 @@ package org.ucll.costcalculatorcost.controller;
 import cost.domain.Category;
 import cost.domain.Cost;
 import facade.CostCalculator;
+import facade.CostCalculatorFacade;
 import java.util.List;
+import javax.annotation.PreDestroy;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +35,7 @@ public class CostController {
         Owner owner = (Owner)req.getSession().getAttribute("owner");
         if(owner==null) return new ModelAndView("index", "user", new Owner());
         List<Cost> costs = owner.getCosts();
+        System.out.println(costs);
         return new ModelAndView("costOverview", "costs", costs);
     }
     
