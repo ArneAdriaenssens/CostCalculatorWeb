@@ -30,7 +30,7 @@ public class CostController {
     private CostValidator validator;
     
     private boolean edit;
-    
+        
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView getCosts(HttpServletRequest req){
         Owner owner = (Owner)req.getSession().getAttribute("owner");

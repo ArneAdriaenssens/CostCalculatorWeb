@@ -1,7 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
     <head>
@@ -12,38 +11,42 @@
     <body>
         <div id="container">
             <header>
-                <h1><span>Cost Calculator</span></h1>
+                <h1><span><spring:message code="lbl.index"/></span></h1>
                 <img src="<c:url value="/images/CostBanner.jpg"/>"></img>
                 <nav>
                     <ul>
                         <li><a href="<c:url value="/user.htm"/>" >Home</a></li>
-                        <li id="actual"><a href="<c:url value="/cost.htm"/>">Cost Overview</a></li>
+                        <li id="actual"><a href="<c:url value="/cost.htm"/>"><spring:message code="lbl.costpage"/></a></li>
                     </ul>
                 </nav>
                 <h2>
-                    Cost Overview
+                    <spring:message code="lbl.costpage"/>
                 </h2>
             </header>
             <main>
+                <span style="float: right">
+                    <a href="?lang=en">en</a> 
+                    <a href="?lang=nl">nl</a>
+                </span>
             <table>
                 <thead>
-                <th>Price</th>
-                <th>Location</th>
-                <th>Description</th>
+                <th><spring:message code="lbl.price"/></th>
+                <th><spring:message code="lbl.location"/></th>
+                <th><spring:message code="lbl.description"/></th>
                 </thead>
                 <tbody>
                 <c:forEach var="cost" items="${costs}">
                     <tr>
-                        <td>${cost.price}</td><td>${cost.location}</td><td>${cost.description}</td><td><a href="<c:url value="/cost/${cost.id}.htm"/>">Edit</a></td>
+                        <td>${cost.price}</td><td>${cost.location}</td><td>${cost.description}</td><td><a href="<c:url value="/cost/${cost.id}.htm"/>"><spring:message code="lbl.edit"/></a></td>
                     </tr> 
                 </c:forEach>
                 </tbody>
             </table>
                 <form action="<c:url value="/cost/new.htm"/>" method="GET">
-                    <input type="submit" value="New" id="new">
+                    <input type="submit" value="<spring:message code='lbl.new'/> " id="new">
                 </form> 
                 <br>
-                <a href="<c:url value="/user/logout.htm"/>" id="logout">logout</a>
+                <a href="<c:url value="/user/logout.htm"/>" id="logout"><spring:message code="lbl.logout"/></a>
             </main>
         </div>
     </body>

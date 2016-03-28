@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
     <head>
@@ -11,16 +12,16 @@
     <body>
         <div id="container">
             <header>
-                <h1><span>Cost Calculator</span></h1>
+                <h1><span><spring:message code="lbl.index"/></span></h1>
                 <img src="<c:url value="/images/CostBanner.jpg"/>"></img>
                 <nav>
                     <ul>
                         <li><a href="<c:url value="/user.htm"/>" >Home</a></li>
-                        <li><a href="<c:url value="/cost.htm"/>">Cost Overview</a></li>
+                        <li><a href="<c:url value="/cost.htm"/>"><spring:message code="lbl.costpage"/></a></li>
                     </ul>
                 </nav>
                 <h2>
-                    Cost Form
+                    <spring:message code="lbl.costform"/>
                 </h2>
 
             </header>
@@ -30,21 +31,22 @@
                         <form:errors path="price" id="errors"/>
                     </p>
                     <p>
-                        <label for="price">Price:</label><form:input type="number" id="price" path="price" value="${cost.price}" />
+                        <label for="price"><spring:message code="lbl.price"/>:</label><form:input type="number" id="price" path="price" value="${cost.price}" />
                     </p>
                     <p>
                         <form:errors path="location" id="errors"/>
                     </p>
                     <p>
-                        <label for="location">Location:</label><form:input type="text" id="location" path="location" value="${cost.location}"/>
+                        <label for="location"><spring:message code="lbl.location"/>:</label><form:input type="text" id="location" path="location" value="${cost.location}"/>
                     </p>
                     <p>
                         <form:errors path="description" id="errors"/>
                     </p>
                     <p>
-                        <label for="description">Description:</label><form:input type="text" id="description" path="description" value="${cost.description}"/>
+                        <label for="description"><spring:message code="lbl.description"/>:</label><form:input type="text" id="description" path="description" value="${cost.description}"/>
                     </p>
                     <p>
+                        <label for="category"><spring:message code="lbl.category"/>:</label>
                         <form:select path="category" items="${categories}"/>
                         <form:hidden value="${cost.id}" path="id"/>
                         <form:hidden value="${owner.email}" path="owner"/>

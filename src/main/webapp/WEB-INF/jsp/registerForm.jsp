@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
     <head>
@@ -11,16 +12,16 @@
     <body>
         <div id="container">
             <header>
-                <h1><span>Cost Calculator</span></h1>
+                <h1><span><spring:message code="lbl.index"/></span></h1>
                 <img src="<c:url value="/images/CostBanner.jpg"/>"></img>
                 <nav>
                     <ul>
                         <li><a href="<c:url value="/user.htm"/>" >Home</a></li>
-                        <li><a href="<c:url value="/cost.htm"/>">Cost Overview</a></li>
+                        <li><a href="<c:url value="/cost.htm"/>"><spring:message code="lbl.costpage"/></a></li>
                     </ul>
                 </nav>
                 <h2>
-                    Register Form
+                    <spring:message code="lbl.registerform"/>
                 </h2>
 
             </header>
@@ -30,28 +31,28 @@
                         <form:errors path="firstName" id="errors"/>
                     </p>
                     <p>
-                        <label for="firstName">First name:</label><form:input type="text" path="firstName" id="firstName" name="firstName"/>
+                        <label for="firstName"><spring:message code="lbl.firstname"/>:</label><form:input type="text" path="firstName" id="firstName" name="firstName"/>
                     </p>
                     <p>
                         <form:errors path="lastName" id="errors"/>
                     </p>
                     <p>
-                        <label for="lastName">Last name:</label><form:input type="text" id="lastName" path="lastName" name="lastName"/>
+                        <label for="lastName"><spring:message code="lbl.lastname"/>:</label><form:input type="text" id="lastName" path="lastName" name="lastName"/>
                     </p>
                     <p>
                         <form:errors path="email" id="errors"/>
                     </p>
                     <p>
-                        <label for="email">Email:</label><form:input type="email" id="email" path="email" name="email"/>
+                        <label for="email"><spring:message code="lbl.email"/>:</label><form:input type="email" id="email" path="email" name="email"/>
                     </p>
                     <p>
                         <form:errors path="password" id="errors"/>
                     </p>
                     <p>
-                        <label for="password">Password:</label><form:input type="password" id="password" path="password" name="password"/>
+                        <label for="password"><spring:message code="lbl.password"/>:</label><form:input type="password" id="password" path="password" name="password"/>
                     </p>
                     <p>
-                        <input type="submit" value="Register">
+                        <input type="submit" value="<spring:message code="lbl.register"/>">
                     </p>
                 </form:form> 
             </main>
