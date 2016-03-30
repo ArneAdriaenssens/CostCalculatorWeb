@@ -6,6 +6,7 @@
 package org.ucll.costcalculatoruser.controller;
 
 import facade.CostCalculator;
+import javax.annotation.PreDestroy;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute("user") Owner user, BindingResult result, HttpServletRequest req) {
         String email = req.getParameter("email");
-        String pass = req.getParameter("password");
+        String pass = req.getParameter("password"); 
         Owner owner = costCalculator.getUserByEmail(email);
         if (owner == null) {
             req.setAttribute("error", "User does not exist");
