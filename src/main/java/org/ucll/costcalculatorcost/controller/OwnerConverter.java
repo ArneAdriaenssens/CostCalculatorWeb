@@ -15,7 +15,7 @@ import owner.domain.Owner;
  *
  * @author arnea
  */
-@Component("conversionService")
+@Component
 public class OwnerConverter implements Converter<String, Owner>{
     
     @Autowired
