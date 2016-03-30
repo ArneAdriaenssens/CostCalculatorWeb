@@ -25,6 +25,14 @@
         </property>
     </bean>
     
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="org.ucll.costcalculatorcost.controller.OwnerConverter"/>
+            </list>
+        </property>
+    </bean>
+    
     <bean id="messageSource"
           class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="classpath:messages" />
