@@ -20,6 +20,8 @@ public class OwnerConverter implements Converter<String, Owner>{
     @Autowired
     private CostCalculator costCalculator;
     
+    public OwnerConverter(){}
+    
     @Override
     public Owner convert(String email) {
         Owner owner = null;
