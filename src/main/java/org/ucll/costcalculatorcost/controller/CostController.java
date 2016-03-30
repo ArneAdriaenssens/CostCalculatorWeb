@@ -33,7 +33,11 @@ public class CostController {
         Owner owner = (Owner)req.getSession().getAttribute("owner");
         if(owner==null) return new ModelAndView("index", "user", new Owner());
         List<Cost> costs = costCalculator.getCostsByEmail(owner.getEmail());
-        return new ModelAndView("costOverview", "costs", costs);
+        ModelAndView model = new ModelAndView("costOverview");
+        model.addObject("costs", costs);
+        model.addObject("total", costCalculator.calculateAmountOfCostsForUser(owner.getEmail()));
+        model.addObject("totalPrice", costCalculator.calculateTotalPriceForUser(owner.getEmail()));
+        return model;
     }
     
     @RequestMapping(value="/new", method=RequestMethod.GET)

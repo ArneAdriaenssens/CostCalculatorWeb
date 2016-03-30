@@ -28,20 +28,36 @@
                     <a href="?lang=en">en</a> 
                     <a href="?lang=nl">nl</a>
                 </span>
-            <table>
-                <thead>
-                <th><spring:message code="lbl.price"/></th>
-                <th><spring:message code="lbl.location"/></th>
-                <th><spring:message code="lbl.description"/></th>
-                </thead>
-                <tbody>
-                <c:forEach var="cost" items="${costs}">
-                    <tr>
-                        <td>${cost.price}</td><td>${cost.location}</td><td>${cost.description}</td><td><a href="<c:url value="/cost/${cost.id}.htm"/>"><spring:message code="lbl.edit"/></a></td>
-                    </tr> 
-                </c:forEach>
-                </tbody>
-            </table>
+                <table>
+                    <thead>
+                    <th><spring:message code="lbl.total"/></th>
+                    <th><spring:message code="lbl.totalprice"/></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                ${total}
+                            </td>
+                            <td>
+                                ${totalPrice}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                    <th><spring:message code="lbl.price"/></th>
+                    <th><spring:message code="lbl.location"/></th>
+                    <th><spring:message code="lbl.description"/></th>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="cost" items="${costs}">
+                            <tr>
+                                <td>${cost.price}</td><td>${cost.location}</td><td>${cost.description}</td><td><a href="<c:url value="/cost/${cost.id}.htm"/>"><spring:message code="lbl.edit"/></a></td>
+                            </tr> 
+                        </c:forEach>
+                    </tbody>
+                </table>
                 <form action="<c:url value="/cost/new.htm"/>" method="GET">
                     <input type="submit" value="<spring:message code='lbl.new'/> " id="new">
                 </form> 
