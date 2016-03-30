@@ -7,6 +7,7 @@ package org.ucll.costcalculatorcost.controller;
 
 import facade.CostCalculator;
 import facade.CostCalculatorFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import owner.domain.Owner;
 
@@ -15,7 +16,9 @@ import owner.domain.Owner;
  * @author arnea
  */
 public class OwnerConverter implements Converter<String, Owner>{
-    private CostCalculator costCalculator = new CostCalculatorFacade();
+    
+    @Autowired
+    private CostCalculator costCalculator;
     
     @Override
     public Owner convert(String email) {
