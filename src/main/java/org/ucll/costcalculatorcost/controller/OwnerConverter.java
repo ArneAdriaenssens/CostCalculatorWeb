@@ -8,20 +8,20 @@ package org.ucll.costcalculatorcost.controller;
 import facade.CostCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
 import owner.domain.Owner;
 
 /**
  *
  * @author arnea
  */
-@Component
 public class OwnerConverter implements Converter<String, Owner>{
     
     @Autowired
     private CostCalculator costCalculator;
     
-    public OwnerConverter(){}
+    public OwnerConverter(){
+        super();
+    }
     
     @Override
     public Owner convert(String email) {
