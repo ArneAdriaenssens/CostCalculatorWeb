@@ -6,15 +6,16 @@
 package org.ucll.costcalculatorcost.controller;
 
 import facade.CostCalculator;
-import facade.CostCalculatorFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 import owner.domain.Owner;
 
 /**
  *
  * @author arnea
  */
+@Component
 public class OwnerConverter implements Converter<String, Owner>{
     
     @Autowired
