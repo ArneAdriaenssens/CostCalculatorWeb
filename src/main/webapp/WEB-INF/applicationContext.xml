@@ -9,7 +9,7 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
     <bean id="costCalculator" class="facade.CostCalculatorFacade">
-       <constructor-arg ref="" value="/>
+       <constructor-arg ref="" value=""/>
     </bean>
     
 </beans>
