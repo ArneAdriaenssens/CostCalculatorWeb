@@ -18,7 +18,6 @@
     <context:component-scan base-package="org.ucll.costcalculatorcost.controller"/>    
     <context:component-scan base-package="org.ucll.costcalculatoruser.controller"/>
     
-    <bean id="costCalculator" class="facade.CostCalculatorFacade"/>
     
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
