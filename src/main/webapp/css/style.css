@@ -232,6 +232,17 @@ input {
     #errors{
         color: red;
     }
+    
+    #error{
+        text-align: center;
+        width: 300px;
+        height: 300px;
+        margin: 0px auto 0px auto;;
+    }
+    
+    #error img{
+        margin-top: 10px;
+    }
 
 }
 
