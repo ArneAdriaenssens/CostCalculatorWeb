@@ -26,7 +26,7 @@
 
             </header>
             <main>
-                <form:form id="costForm" commandName="cost" method="post" action="/CostCalculatorWeb/cost/save.htm" >
+                <form:form id="costForm" commandName="cost" method="post" action="${pageContext.request.contextPath}/cost/save.htm" >
                     <p>
                         <form:errors path="price" id="errors"/>
                     </p>
