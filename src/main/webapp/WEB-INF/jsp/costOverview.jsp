@@ -6,6 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>CostOverview - CostCalculator</title>
+        <link rel="icon" type="image/png" href="<c:url value="/images/favicon.png"/>">
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css"/>">
     </head>
     <body>
@@ -29,9 +30,15 @@
                     <a href="?lang=nl">nl</a>
                 </span>
                 <table>
+                    <script>
+                        var json = '${exchange}';
+                        obj = JSON.parse(json);
+                        var dollarkoers = obj.rates.USD;
+                    </script>
                     <thead>
                     <th><spring:message code="lbl.total"/></th>
-                    <th><spring:message code="lbl.totalprice"/></th>
+                    <th><spring:message code="lbl.totalpriceeuro"/></th>
+                    <th><spring:message code="lbl.totalpricedollar"/></th>
                     </thead>
                     <tbody>
                         <tr>
@@ -40,6 +47,11 @@
                             </td>
                             <td>
                                 ${totalPrice}
+                            </td>
+                            <td>
+                                <script>
+                                    document.write(parseFloat(dollarkoers*${totalPrice}).toFixed(2));
+                                </script>
                             </td>
                         </tr>
                     </tbody>
@@ -52,11 +64,6 @@
                     <th><spring:message code="lbl.description"/></th>
                     </thead>
                     <tbody>
-                    <script>
-                        var json = '${exchange}';
-                        obj = JSON.parse(json);
-                        var dollarkoers = obj.rates.USD;
-                    </script>
                     <c:forEach var="cost" items="${costs}">
                         <tr>
                             <td>${cost.price}</td>
