@@ -47,15 +47,24 @@
                 <table>
                     <thead>
                     <th><spring:message code="lbl.price"/></th>
+                    <th><spring:message code="lbl.dollar"/></th>
                     <th><spring:message code="lbl.location"/></th>
                     <th><spring:message code="lbl.description"/></th>
                     </thead>
                     <tbody>
-                        <c:forEach var="cost" items="${costs}">
-                            <tr>
-                                <td>${cost.price}</td><td>${cost.location}</td><td>${cost.description}</td><td><a href="<c:url value="/cost/${cost.id}.htm"/>"><spring:message code="lbl.edit"/></a></td>
-                            </tr> 
-                        </c:forEach>
+                    <script>
+                        var json = '${exchange}';
+                        obj = JSON.parse(json);
+                        var dollarkoers = obj.rates.USD;
+                    </script>
+                    <c:forEach var="cost" items="${costs}">
+                        <tr>
+                            <td>${cost.price}</td>
+                            <td><script>document.write(parseFloat(dollarkoers*${cost.price}).toFixed(2));</script></td>
+                            <td>${cost.location}</td><td>${cost.description}</td>
+                            <td><a href="<c:url value="/cost/${cost.id}.htm"/>"><spring:message code="lbl.edit"/></a></td>
+                        </tr> 
+                    </c:forEach>
                     </tbody>
                 </table>
                 <form action="<c:url value="/cost/new.htm"/>" method="GET">

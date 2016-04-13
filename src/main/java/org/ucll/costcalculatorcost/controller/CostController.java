@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.ucll.webservice.WebServiceExchange;
 import owner.domain.Owner;
 
 /**
@@ -26,7 +27,13 @@ public class CostController {
     @Autowired
     private CostCalculator costCalculator;
     
+    private WebServiceExchange webExchange;
+    
     private boolean edit;
+    
+    public CostController(){
+        this.webExchange=new WebServiceExchange();
+    }
         
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView getCosts(HttpServletRequest req){
@@ -37,6 +44,7 @@ public class CostController {
         model.addObject("costs", costs);
         model.addObject("total", costCalculator.calculateAmountOfCostsForUser(owner.getEmail()));
         model.addObject("totalPrice", costCalculator.calculateTotalPriceForUser(owner.getEmail()));
+        model.addObject("exchange", webExchange.getExchange());
         return model;
     }
     
