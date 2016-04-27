@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
     <head>
@@ -30,15 +31,10 @@
                     <a href="?lang=nl">nl</a>
                 </span>
                 <table>
-                    <script>
-                        var json = '${exchange}';
-                        obj = JSON.parse(json);
-                        var dollarkoers = obj.rates.USD;
-                    </script>
                     <thead>
                     <th><spring:message code="lbl.total"/></th>
                     <th><spring:message code="lbl.totalpriceeuro"/></th>
-                    <th><spring:message code="lbl.totalpricedollar"/></th>
+                    <th><spring:message code="lbl.totalpricedollar"/> ${currency} </th>
                     </thead>
                     <tbody>
                         <tr>
@@ -49,9 +45,7 @@
                                 ${totalPrice}
                             </td>
                             <td>
-                                <script>
-                                    document.write(parseFloat(dollarkoers*${totalPrice}).toFixed(2));
-                                </script>
+                                ${totalPrice * exchange}
                             </td>
                         </tr>
                     </tbody>
@@ -59,24 +53,37 @@
                 <table>
                     <thead>
                     <th><spring:message code="lbl.price"/></th>
-                    <th><spring:message code="lbl.dollar"/></th>
+                    <th><spring:message code="lbl.dollar"/> ${currency}</th>
                     <th><spring:message code="lbl.location"/></th>
                     <th><spring:message code="lbl.description"/></th>
                     </thead>
                     <tbody>
-                    <c:forEach var="cost" items="${costs}">
-                        <tr>
-                            <td>${cost.price}</td>
-                            <td><script>document.write(parseFloat(dollarkoers*${cost.price}).toFixed(2));</script></td>
-                            <td>${cost.location}</td><td>${cost.description}</td>
-                            <td><a href="<c:url value="/cost/${cost.id}.htm"/>"><spring:message code="lbl.edit"/></a></td>
-                        </tr> 
-                    </c:forEach>
+                        <c:forEach var="cost" items="${costs}">
+                            <tr>
+                                <td>${cost.price}</td>
+                                <td>${cost.price * exchange}</td>
+                                <td>${cost.location}</td><td>${cost.description}</td>
+                                <td><a href="<c:url value="/cost/${cost.id}.htm"/>"><spring:message code="lbl.edit"/></a></td>
+                            </tr> 
+                        </c:forEach>
                     </tbody>
                 </table>
                 <form action="<c:url value="/cost/new.htm"/>" method="GET">
                     <input type="submit" value="<spring:message code='lbl.new'/> " id="new">
                 </form> 
+                <br>
+
+
+                <form action="<c:url value="/cost/rate.htm"/>" method="POST">
+                    <label for="rate"><spring:message code="lbl.rate"/>:</label>
+                    <select name="rate">
+                        <c:forEach var="current" items="${rates}">
+                            <option value="${current}">${current}</option>
+                        </c:forEach>
+                    </select>
+                    <input type="submit" value="Save rate"/>
+                </form>
+
                 <br>
                 <a href="<c:url value="/user/logout.htm"/>" id="logout"><spring:message code="lbl.logout"/></a>
             </main>

@@ -14,7 +14,7 @@
         <div id="container">
             <header>
                 <h1><span><spring:message code="lbl.index"/></span></h1>
-                <img src="<c:url value="/images/CostBanner.jpg"/>"></img>
+                <img src="<c:url value="/images/CostBanner.jpg"/>">
                 <nav>
                     <ul>
                         <li><a href="<c:url value="/user.htm"/>" >Home</a></li>
