@@ -64,6 +64,7 @@
                                 <td>${cost.price * exchange}</td>
                                 <td>${cost.location}</td><td>${cost.description}</td>
                                 <td><a href="<c:url value="/cost/${cost.id}.htm"/>"><spring:message code="lbl.edit"/></a></td>
+                                <td><a href="<c:url value="/cost/deletecost/${cost.id}.htm"/>"><spring:message code="lbl.delete"/></td>
                             </tr> 
                         </c:forEach>
                     </tbody>

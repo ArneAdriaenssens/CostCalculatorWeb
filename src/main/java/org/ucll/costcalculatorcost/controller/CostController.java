@@ -103,5 +103,17 @@ public class CostController {
         response.addCookie(cookie);
         return "redirect:/cost.htm";
     }
+        
+    @RequestMapping(method = RequestMethod.GET, value = "/deletecost/{id}")
+    public ModelAndView getDeletePage(@PathVariable long id){
+        return new ModelAndView("deleteConfirm", "id", id);
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/deletecost/{id}")
+    public String deleteCost(@PathVariable long id){
+        Cost cost = costCalculator.getCostById(id);
+        if(cost!=null) costCalculator.deleteCost(cost);
+        return "redirect:/cost.htm";
+    }
     
 }
