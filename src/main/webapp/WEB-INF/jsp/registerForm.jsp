@@ -14,19 +14,14 @@
         <div id="container">
             <header>
                 <h1><span><spring:message code="lbl.index"/></span></h1>
-                <img src="<c:url value="/images/CostBanner.jpg"/>">
-                <nav>
-                    <ul>
-                        <li><a href="<c:url value="/user.htm"/>" >Home</a></li>
-                        <li><a href="<c:url value="/cost.htm"/>"><spring:message code="lbl.costpage"/></a></li>
-                    </ul>
-                </nav>
+                <%@include file="/WEB-INF/jsp/header.jsp" %>
                 <h2>
                     <spring:message code="lbl.registerform"/>
                 </h2>
 
             </header>
             <main>
+                <%@include file="/WEB-INF/jsp/changeLanguage.jsp" %>
                 <form:form id="userForm" commandName="user" method="post" action="${pageContext.request.contextPath}/user/save.htm" >
                     <p>
                         <form:errors path="firstName" id="errors"/>

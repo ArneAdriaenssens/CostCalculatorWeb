@@ -14,22 +14,13 @@
         <div id="container">
             <header>
                 <h1><span><spring:message code="lbl.index"/></span></h1>
-                <img src="<c:url value="/images/CostBanner.jpg"/>"></img>
-                <nav>
-                    <ul>
-                        <li id="actual"><a href="<c:url value="/user.htm"/>" >Home</a></li>
-                        <li><a href="<c:url value="/cost.htm"/>"><spring:message code="lbl.costpage"/></a></li>
-                    </ul>
-                </nav>
+                <%@include file="/WEB-INF/jsp/header.jsp" %>
                 <h2>
                     Home
                 </h2>
             </header>
             <main>
-                <span style="float: right">
-                    <a href="?lang=en">en</a> 
-                    <a href="?lang=nl">nl</a>
-                </span>
+                <%@include file="/WEB-INF/jsp/changeLanguage.jsp" %>
                 <c:choose>
                     <c:when test="${owner!=null}">
                         <h3>
