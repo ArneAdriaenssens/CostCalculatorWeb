@@ -51,9 +51,10 @@
                     <tbody>
                         <c:forEach var="cost" items="${costs}">
                             <tr>
-                                <td>${cost.price}</td>
-                                <td>${cost.price * exchange}</td>
-                                <td>${cost.location}</td><td>${cost.description}</td>
+                                <td><c:out value="${cost.price}"/></td>
+                                <td><c:out value="${cost.price * exchange}"/></td>
+                                <td><c:out value="${cost.location}"/></td>
+                                <td><c:out value="${cost.description}"/></td>
                                 <td><a href="<c:url value="/cost/${cost.id}.htm"/>"><spring:message code="lbl.edit"/></a></td>
                                 <td><a href="<c:url value="/cost/deletecost/${cost.id}.htm"/>"><spring:message code="lbl.delete"/></td>
                             </tr> 
