@@ -24,7 +24,7 @@
                 <c:choose>
                     <c:when test="${owner!=null}">
                         <h3>
-                            <spring:message code="lbl.hello"/> ${owner.firstName}
+                            <spring:message code="lbl.hello"/> <c:out value="${owner.firstName}"/>
                         </h3>
                     </c:when>
                     <c:otherwise>
