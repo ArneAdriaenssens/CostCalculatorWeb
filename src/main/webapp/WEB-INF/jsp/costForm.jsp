@@ -27,19 +27,19 @@
                         <form:errors path="price" id="errors"/>
                     </p>
                     <p>
-                        <label for="price"><spring:message code="lbl.price"/>:</label><form:input type="number" id="price" path="price" value="${cost.price}" />
+                        <label for="price"><spring:message code="lbl.price"/>:</label><form:input type="number" id="price" path="price" value="${cost.price}" step="0.01" required="required"/>
                     </p>
                     <p>
                         <form:errors path="location" id="errors"/>
                     </p>
                     <p>
-                        <label for="location"><spring:message code="lbl.location"/>:</label><form:input type="text" id="location" path="location" value="${cost.location}"/>
+                        <label for="location"><spring:message code="lbl.location"/>:</label><form:input type="text" id="location" path="location" value="${cost.location}" required="required"/>
                     </p>
                     <p>
                         <form:errors path="description" id="errors"/>
                     </p>
                     <p>
-                        <label for="description"><spring:message code="lbl.description"/>:</label><form:input type="text" id="description" path="description" value="${cost.description}"/>
+                        <label for="description"><spring:message code="lbl.description"/>:</label><form:input type="text" id="description" path="description" value="${cost.description}" required="required"/>
                     </p>
                     <p>
                         <label for="category"><spring:message code="lbl.category"/>:</label>

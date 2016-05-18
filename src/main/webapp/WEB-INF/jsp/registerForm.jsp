@@ -27,25 +27,25 @@
                         <form:errors path="firstName" id="errors"/>
                     </p>
                     <p>
-                        <label for="firstName"><spring:message code="lbl.firstname"/>:</label><form:input type="text" path="firstName" id="firstName" name="firstName"/>
+                        <label for="firstName"><spring:message code="lbl.firstname"/>:</label><form:input type="text" path="firstName" id="firstName" name="firstName" required="required"/>
                     </p>
                     <p>
                         <form:errors path="lastName" id="errors"/>
                     </p>
                     <p>
-                        <label for="lastName"><spring:message code="lbl.lastname"/>:</label><form:input type="text" id="lastName" path="lastName" name="lastName"/>
+                        <label for="lastName"><spring:message code="lbl.lastname"/>:</label><form:input type="text" id="lastName" path="lastName" name="lastName" required="required"/>
                     </p>
                     <p>
                         <form:errors path="email" id="errors"/>
                     </p>
                     <p>
-                        <label for="email"><spring:message code="lbl.email"/>:</label><form:input type="email" id="email" path="email" name="email"/>
+                        <label for="email"><spring:message code="lbl.email"/>:</label><form:input type="email" id="email" path="email" name="email" required="required"/>
                     </p>
                     <p>
                         <form:errors path="password" id="errors"/>
                     </p>
                     <p>
-                        <label for="password"><spring:message code="lbl.password"/>:</label><form:input type="password" id="password" path="password" name="password"/>
+                        <label for="password"><spring:message code="lbl.password"/>:</label><form:input type="password" id="password" path="password" name="password" required="required"/>
                     </p>
                     <p>
                         <input type="submit" value="<spring:message code="lbl.register"/>">

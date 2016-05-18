@@ -34,13 +34,13 @@
                                 <form:errors path="email" id="errors"/>
                             </p>
                             <p>
-                                <label for="email"><spring:message code="lbl.email"/></label><form:input type="email" path="email"/>
+                                <label for="email"><spring:message code="lbl.email"/></label><form:input type="email" path="email" required="required"/>
                             </p>
                             <p>
                                 <form:errors path="password" id="errors"/>
                             </p>
                             <p>
-                                <label for="password"><spring:message code="lbl.password"/></label><form:password path="password"/>
+                                <label for="password"><spring:message code="lbl.password"/></label><form:password path="password" required="required"/>
                             </p>
                             <p>
                                 <input type="submit" value="<spring:message code="lbl.login"/>">
